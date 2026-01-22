@@ -3,16 +3,33 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
-SRC_DIR = src
-OGJ_DIR = obj
-INC_DIR = include
+SRCS = src
+OBJS = obj
 
 MLX = -lmlx -lXext -lX11 -lm -lz -lpthread
 
-SRC =	$(SRC_DIR)/main.c \
-		$(SRC_DIR)/map.c \
-		$(SRC_DIR)/game.c \
-		$(SRC_DIR)/render.c \
-		$(SRC_DIR)/utils.c
+SRCS =	src/main.c \
+		src/map.c \
+		src/game.c \
+		src/render.c \
+		src/utils.c
 
-OBJ = $(patsubst $(	SRC_DIR)/%.c,$(OBJ_DIR)/%.o$(SRC))
+OBJS = $(SRCS:.c=.o)
+
+MLX_DIR = minilibx-linux
+MLX_LIB = $(MLX_DIR)/libmlx.a
+
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
+
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all

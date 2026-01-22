@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echarmai <echarmai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/06 15:05:10 by echarmai          #+#    #+#             */
-/*   Updated: 2026/01/22 12:27:43 by echarmai         ###   ########.fr       */
+/*   Created: 2026/01/22 13:19:24 by echarmai          #+#    #+#             */
+/*   Updated: 2026/01/22 14:41:26 by echarmai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx-linux/mlx.h"
-#include <stdlib.h>
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
-int	main(void)
+# include <mlx.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
+	char	**map;
+	int		width;
+	int		height;
+	int		player_x;
+	int		player_y;
+}	t_game;
 
-	mlx = mlx_init();
-	if (!mlx)
-		return (1);
-	win = mlx_new_window(mlx, 800, 600, "MLX TEST");
-	if (!win)
-		return (1);
-	mlx_loop(mlx);
-	return (0);
-}
+void	init_game()
+#endif;
