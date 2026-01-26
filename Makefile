@@ -9,7 +9,8 @@ OBJS = obj
 MLX = -lmlx -lXext -lX11 -lm -lz -lpthread
 
 SRCS =	src/main.c \
-		src/map.c \
+		src/read_map.c \
+		src/map_checker.c \
 		src/game.c \
 		src/render.c \
 		src/utils.c
