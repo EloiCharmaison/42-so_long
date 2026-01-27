@@ -10,35 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
+
+int	get_map_height(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+int	get_map_width(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[0][i])
+		i++;
+	return (i);
+}
 
 int	main(int argc, char **argv)
 {
-	char	**map;
-	int		i;
+	t_game	game;
 
 	if (argc != 2)
+	{
+		write(2, "Error, Wrong number of argument\n", 32);
+		return (1);
+	}
+	game.map = read_map(argv[1]);
+	if (!game.map)
 		return (1);
 
-	map = read_map(argv[1]);
-	if (!map)
-		return (1);
-	i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		free(map[i]);
-		i++;
-	}
-	free(map);
+	game.height = get_map_height(game.map);
+	game.width = get_map_width(game.map);
+	game.moves = 0;
+
+	mlx_init_game(&game);
+	mlx_loop(game.mlx);
 	return (0);
-
-	char **map_copy;
-
-	map_copy = copy_map(map);
-	if (!check_flood(map_copy))
-	{
-		write(2, "Error, the map is not solvable\n", 31);
-		return (1);
-	}
 }
+

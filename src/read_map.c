@@ -10,34 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-char	**read_map(char *filename)
-{
-	char	**map;
-	int		lines;
-	int		fd;
-	int		i;
-
-	lines = count_lines(filename);
-	if (lines == -1)
-		return (NULL);
-	map = malloc(sizeof(char *) * (lines + 1));
-	if (!map)
-		return (NULL);
-
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (NULL);
-	i = 0;
-	while (i < lines)
-	{
-		map[i] = read_line(fd);
-		if (!map[i])
-			break ;
-		i++;
-	}
-}
+#include "../so_long.h"
 
 int	count_line(char *filename)
 {
@@ -58,7 +31,7 @@ int	count_line(char *filename)
 	return (count + 1);
 }
 
-static char	*read_line(int fd)
+char	*read_line(int fd)
 {
 	char	*line;
 	char	c;
@@ -81,4 +54,32 @@ static char	*read_line(int fd)
 	}
 	line[i] = '\0';
 	return (line);
+}
+
+char	**read_map(char *filename)
+{
+	char	**map;
+	int		lines;
+	int		fd;
+	int		i;
+
+	lines = count_line(filename);
+	if (lines == -1)
+		return (NULL);
+	map = malloc(sizeof(char *) * (lines + 1));
+	if (!map)
+		return (NULL);
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	i = 0;
+	while (i < lines)
+	{
+		map[i] = read_line(fd);
+		if (!map[i])
+			break ;
+		i++;
+	}
+	return (map);
 }
