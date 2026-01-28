@@ -19,18 +19,23 @@ OBJS = $(SRCS:.c=.o)
 
 MLX_DIR = minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx.a
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
+	make -C $(LIBFT_DIR)
+	$(CC) $(OBJS) $(LIBFT) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
+	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
 
 re: fclean all

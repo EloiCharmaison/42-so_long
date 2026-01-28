@@ -24,6 +24,17 @@ int	map_checker(char **map)
 		write(2, "Error, the map is not closed by walls\n", 37);
 		return (1);
 	}
+	return (0);
+}
+
+int	line_len(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n' && line[i] != '\r')
+		i++;
+	return (i);
 }
 
 int	check_rectangle(char **map)
@@ -33,13 +44,11 @@ int	check_rectangle(char **map)
 
 	if (!map || !map[0])
 		return (0);
-	len = 0;
-	while (map[0][len])
-		len++;
+	len = line_len(map[0]);
 	i = 1;
 	while (map[i])
 	{
-		if ((int)ft_strlen(map[i]) != len)
+		if (line_len(map[i]) != len)
 			return (0);
 		i++;
 	}
@@ -53,12 +62,15 @@ int	check_walls(char **map)
 	int	height;
 	int	width;
 
+	if (!map || !map[0])
+		return (0);
+
 	height = 0;
 	while (map[height])
 		height++;
-	width = ft_strlen(map[0]);
+	width = line_len(map[0]);
 	j = 0;
-	while (i < height - 1)
+	while (j < width)
 	{
 		if (map[0][j] != '1' || map[height - 1][j] != '1')
 			return (0);
@@ -70,6 +82,6 @@ int	check_walls(char **map)
 		if (map[i][0] != '1' || map[i][width - 1] != '1')
 			return (0);
 		i++;
-		return (1);
 	}
+	return (1);
 }
