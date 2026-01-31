@@ -11,9 +11,11 @@ MLX = -lmlx -lXext -lX11 -lm -lz -lpthread
 SRCS =	src/main.c \
 		src/read_map.c \
 		src/map_checker.c \
-		src/game.c \
 		src/render.c \
-		src/utils.c
+		src/mlx_init_game.c \
+		src/close_game.c \
+		src/player.c \
+		src/input.c
 
 OBJS = $(SRCS:.c=.o)
 

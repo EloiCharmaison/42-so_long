@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../so_long.h"
+#include <stdio.h>
 
 int	get_map_height(char **map)
 {
@@ -44,15 +45,20 @@ int	main(int argc, char **argv)
 	game.map = read_map(argv[1]);
 	if (!game.map)
 		return (1);
-	if (!map_checker(game.map))
+	if (map_checker(game.map))
 		return (1);
 
 	game.height = get_map_height(game.map);
 	game.width = get_map_width(game.map);
 	game.moves = 0;
 
-	mlx_init(&game);
+	mlx_init_game(&game);
+	load_images(&game);
+	find_player_and_collectibles(&game);
+	mlx_key_hook(game.win, handle_key, &game);
+	render_map(&game);
 	mlx_loop(game.mlx);
+	printf("Moves: %d\n", game.moves);
 	return (0);
 }
 

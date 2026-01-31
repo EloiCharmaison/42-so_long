@@ -12,6 +12,12 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# define TILE 128
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
 
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
@@ -29,7 +35,7 @@ typedef struct s_game
 	int		height;
 	int		player_x;
 	int		player_y;
-	int		collectible;
+	int		collectibles;
 	int		moves;
 
 	void	*img_wall;
@@ -50,5 +56,12 @@ void load_images(t_game *game);
 void	mlx_init_game(t_game *game);
 int	get_map_width(char **map);
 int	get_map_height(char **map);
+void	mlx_init_game(t_game *game);
+void load_images(t_game *game);
+int close_game(t_game *game);
+void	render_map(t_game *game);
+void	find_player_and_collectibles(t_game *game);
+int handle_key(int keycode, t_game *game);
+void	move_player(t_game *game, int dx, int dy);
 
 #endif
