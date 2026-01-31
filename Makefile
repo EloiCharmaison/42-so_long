@@ -33,6 +33,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
 	make -C $(PRINTF_DIR)
+	make -C $(MLX_DIR)
 	$(CC) $(OBJS) $(LIBFT) $(PRINTF) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
 
 clean:
