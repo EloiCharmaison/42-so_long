@@ -12,7 +12,7 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define TILE 128
+# define TILE 32
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
@@ -20,11 +20,11 @@
 # define KEY_ESC 65307
 
 # include "minilibx-linux/mlx.h"
-# include "libft/libft.h"
+# include "ft_printf/libft/libft.h"
+# include "ft_printf/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 
 typedef struct s_game
 {

@@ -20,7 +20,7 @@ int	get_map_height(char **map)
 	i = 0;
 	while (map[i])
 		i++;
-	return (i);
+	return (i - 1);
 }
 
 int	get_map_width(char **map)
@@ -28,9 +28,9 @@ int	get_map_width(char **map)
 	int	i;
 
 	i = 0;
-	while (map[0][i])
+	while (map[0][i] && map[0][i] != '\n')
 		i++;
-	return (i);
+	return (i - 1);
 }
 
 int	main(int argc, char **argv)
@@ -58,7 +58,6 @@ int	main(int argc, char **argv)
 	mlx_key_hook(game.win, handle_key, &game);
 	render_map(&game);
 	mlx_loop(game.mlx);
-	printf("Moves: %d\n", game.moves);
 	return (0);
 }
 

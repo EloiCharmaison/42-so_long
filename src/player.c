@@ -54,7 +54,7 @@ void	move_player(t_game *game, int dx, int dy)
 	{
 		if (game->collectibles == 0)
 		{
-			write(1, "GG\n", 3);
+			ft_printf("GG\nMoves: %d\n", game->moves);
 			close_game(game);
 		}
 		return ;

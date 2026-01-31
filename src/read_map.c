@@ -81,5 +81,6 @@ char	**read_map(char *filename)
 			break ;
 		i++;
 	}
+	map[i] = NULL;
 	return (map);
 }

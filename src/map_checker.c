@@ -48,6 +48,8 @@ int	check_rectangle(char **map)
 	i = 1;
 	while (map[i])
 	{
+		if (line_len(map[i]) == 0 && !map[i + 1])
+			return (1);
 		if (line_len(map[i]) != len)
 			return (0);
 		i++;
@@ -64,11 +66,14 @@ int	check_walls(char **map)
 
 	if (!map || !map[0])
 		return (0);
-
 	height = 0;
-	while (map[height])
+	while (map[height] && line_len(map[height]) > 0)
 		height++;
+	if (height < 3)
+		return (0);
 	width = line_len(map[0]);
+	if (width < 3)
+		return (0);
 	j = 0;
 	while (j < width)
 	{
@@ -77,7 +82,7 @@ int	check_walls(char **map)
 		j++;
 	}
 	i = 1;
-	while (i < height - 1)
+	while (i < height - 2)
 	{
 		if (map[i][0] != '1' || map[i][width - 1] != '1')
 			return (0);
