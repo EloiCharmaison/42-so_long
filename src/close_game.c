@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-int close_game(t_game *game)
+int	close_game(t_game *game)
 {
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);

@@ -21,7 +21,7 @@ OBJS = $(SRCS:.c=.o)
 
 MLX_DIR = minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx.a
-PRINTF_DIR = ft_printf
+PRINTF_DIR = 42-ft_printf
 PRINTF = $(PRINTF_DIR)/ft_printf.a
 LIBFT_DIR = $(PRINTF_DIR)/libft
 LIBFT = $(LIBFT_DIR)/libft.a

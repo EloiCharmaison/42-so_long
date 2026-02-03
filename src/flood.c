@@ -22,7 +22,6 @@ void	flood(char **map, int x, int y)
 		write(2, "Error, the map is not solvable\n", 31);
 		return (1);
 	}
-
 }
 
 char	**copy_map(char **map)
@@ -36,7 +35,6 @@ char	**copy_map(char **map)
 	copy = malloc(sizeof(char *) * (i + 1));
 	if (!copy)
 		return (NULL);
-
 	i = 0;
 	while (map[i])
 	{
@@ -47,7 +45,6 @@ char	**copy_map(char **map)
 	return (copy);
 }
 
-
 int	check_flood(char **map)
 {
 	int	x;
@@ -57,7 +54,6 @@ int	check_flood(char **map)
 
 	find_player(map, &x, &y);
 	flood_fill(map, x, y);
-
 	i = 0;
 	while (map[i])
 	{
@@ -101,7 +97,6 @@ void	flood_fill(char **map, int x, int y)
 	if (map[x][y] == '1' || map[x][y] == 'V')
 		return ;
 	map[x][y] = 'V';
-
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);
 	flood_fill(map, x, y + 1);

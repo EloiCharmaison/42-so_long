@@ -16,12 +16,19 @@ int	map_checker(char **map)
 {
 	if (!check_rectangle(map))
 	{
-		write(2, "Error, the map is not rectangular\n", 34);
+		ft_printf("Error, the map is not rectangular\n");
 		return (1);
 	}
 	if (!check_walls(map))
 	{
-		write(2, "Error, the map is not closed by walls\n", 37);
+		ft_printf("Error, the map is not closed by walls\n");
+		return (1);
+	}
+	if (check_chars(map) == 0)
+	{
+		ft_printf("Error, wrong characters found in map or ");
+		ft_printf("needed 1 exit, 1 starting position ");
+		ft_printf("and at least 1 collectible\n");
 		return (1);
 	}
 	return (0);
@@ -59,8 +66,6 @@ int	check_rectangle(char **map)
 
 int	check_walls(char **map)
 {
-	int	i;
-	int	j;
 	int	height;
 	int	width;
 
@@ -74,6 +79,16 @@ int	check_walls(char **map)
 	width = line_len(map[0]);
 	if (width < 3)
 		return (0);
+	if (!wall_parse(height, width, map))
+		return (0);
+	return (1);
+}
+
+int	wall_parse(int height, int width, char **map)
+{
+	int	i;
+	int	j;
+
 	j = 0;
 	while (j < width)
 	{

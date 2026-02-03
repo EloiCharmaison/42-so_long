@@ -20,8 +20,8 @@
 # define KEY_ESC 65307
 
 # include "minilibx-linux/mlx.h"
-# include "ft_printf/libft/libft.h"
-# include "ft_printf/ft_printf.h"
+# include "42-ft_printf/libft/libft.h"
+# include "42-ft_printf/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -45,23 +45,29 @@ typedef struct s_game
 	void	*img_collect;
 }	t_game;
 
-int	main(int argc, char **argv);
-int	map_checker(char **map);
-int	check_rectangle(char **map);
-int	check_walls(char **map);
+int		main(int argc, char **argv);
+int		map_checker(char **map);
+int		check_rectangle(char **map);
+int		check_walls(char **map);
 char	**read_map(char *filename);
-int	count_line(char *filename);
+int		count_line(char *filename);
 char	*read_line(int fd);
-void load_images(t_game *game);
+void	load_images(t_game *game);
 void	mlx_init_game(t_game *game);
-int	get_map_width(char **map);
-int	get_map_height(char **map);
+int		get_map_width(char **map);
+int		get_map_height(char **map);
 void	mlx_init_game(t_game *game);
-void load_images(t_game *game);
-int close_game(t_game *game);
+void	load_images(t_game *game);
+int		close_game(t_game *game);
 void	render_map(t_game *game);
 void	find_player_and_collectibles(t_game *game);
-int handle_key(int keycode, t_game *game);
+int		handle_key(int keycode, t_game *game);
 void	move_player(t_game *game, int dx, int dy);
+int		check_move(t_game *game, char next);
+int		wall_parse(int height, int width, char **map);
+void	map_parse(t_game *game, int x, int y);
+int		check_chars(char **map);
+int		check_min_chars(char **map);
+void	count_chars(char **map, int *p, int *e, int *c);
 
 #endif

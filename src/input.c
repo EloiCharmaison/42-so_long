@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-int handle_key(int keycode, t_game *game)
+int	handle_key(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 		close_game(game);
@@ -24,5 +24,7 @@ int handle_key(int keycode, t_game *game)
 		move_player(game, -1, 0);
 	else if (keycode == KEY_D)
 		move_player(game, 1, 0);
+	else if (keycode == KEY_ESC)
+		close_game(game);
 	return (0);
 }

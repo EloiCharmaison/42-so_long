@@ -69,7 +69,6 @@ char	**read_map(char *filename)
 	map = malloc(sizeof(char *) * (lines + 1));
 	if (!map)
 		return (NULL);
-
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
@@ -83,4 +82,47 @@ char	**read_map(char *filename)
 	}
 	map[i] = NULL;
 	return (map);
+}
+
+int	check_chars(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j] && map[i][j] != '\n' && map[i][j] != '\r')
+		{
+			if (!ft_strchr("01PCE", map[i][j]))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (check_min_chars(map));
+}
+
+void	count_chars(char **map, int *p, int *e, int *c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j] && map[i][j] != '\n' && map[i][j] != '\r')
+		{
+			if (map[i][j] == 'P')
+				(*p)++;
+			if (map[i][j] == 'E')
+				(*e)++;
+			if (map[i][j] == 'C')
+				(*c)++;
+			j++;
+		}
+		i++;
+	}
 }

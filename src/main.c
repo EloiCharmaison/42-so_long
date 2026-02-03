@@ -47,11 +47,9 @@ int	main(int argc, char **argv)
 		return (1);
 	if (map_checker(game.map))
 		return (1);
-
 	game.height = get_map_height(game.map);
 	game.width = get_map_width(game.map);
 	game.moves = 0;
-
 	mlx_init_game(&game);
 	load_images(&game);
 	find_player_and_collectibles(&game);
@@ -61,3 +59,17 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
+int	check_min_chars(char **map)
+{
+	int	p;
+	int	e;
+	int	c;
+
+	p = 0;
+	e = 0;
+	c = 0;
+	count_chars(map, &p, &e, &c);
+	if (p != 1 || e != 1 || c < 1)
+		return (0);
+	return (1);
+}
