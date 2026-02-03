@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-void	flood(char **map, int x, int y)
+int	flood(char **map)
 {
 	char	**map_copy;
 
@@ -22,6 +22,7 @@ void	flood(char **map, int x, int y)
 		write(2, "Error, the map is not solvable\n", 31);
 		return (1);
 	}
+	return (0);
 }
 
 char	**copy_map(char **map)
@@ -38,7 +39,7 @@ char	**copy_map(char **map)
 	i = 0;
 	while (map[i])
 	{
-		copy[i] = strdup(map[i]);
+		copy[i] = ft_strdup(map[i]);
 		i++;
 	}
 	copy[i] = NULL;

@@ -47,6 +47,8 @@ int	main(int argc, char **argv)
 		return (1);
 	if (map_checker(game.map))
 		return (1);
+	if (flood(game.map))
+		return (1);
 	game.height = get_map_height(game.map);
 	game.width = get_map_width(game.map);
 	game.moves = 0;

@@ -20,8 +20,8 @@
 # define KEY_ESC 65307
 
 # include "minilibx-linux/mlx.h"
-# include "42-ft_printf/libft/libft.h"
-# include "42-ft_printf/ft_printf.h"
+# include "ft_printf/libft/libft.h"
+# include "ft_printf/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -69,5 +69,10 @@ void	map_parse(t_game *game, int x, int y);
 int		check_chars(char **map);
 int		check_min_chars(char **map);
 void	count_chars(char **map, int *p, int *e, int *c);
+int		flood(char **map);
+char	**copy_map(char **map);
+int		check_flood(char **map);
+void	find_player(char **map, int *x, int *y);
+void	flood_fill(char **map, int x, int y);
 
 #endif
