@@ -1,4 +1,4 @@
-NAME = so_long.a
+NAME = so_long
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
@@ -35,7 +35,7 @@ $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
 	make -C $(PRINTF_DIR)
 	make -C $(MLX_DIR)
-	$(CC) $(OBJS) $(LIBFT) $(PRINTF) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
