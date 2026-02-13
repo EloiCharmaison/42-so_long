@@ -19,7 +19,7 @@ int	flood(char **map)
 	map_copy = copy_map(map);
 	if (!check_flood(map_copy))
 	{
-		write(2, "Error, the map is not solvable\n", 31);
+		ft_printf("Error\nThe map is not solvable\n");
 		return (1);
 	}
 	return (0);
@@ -97,6 +97,11 @@ void	flood_fill(char **map, int x, int y)
 {
 	if (map[x][y] == '1' || map[x][y] == 'V')
 		return ;
+	if (map[x][y] == 'E')
+	{
+		map[x][y] = 'V';
+		return ;
+	}
 	map[x][y] = 'V';
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);

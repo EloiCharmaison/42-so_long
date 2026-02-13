@@ -67,7 +67,12 @@ int	check_move(t_game *game, char next)
 	{
 		if (game->collectibles == 0)
 		{
-			ft_printf("GG\nMoves: %d\n", game->moves);
+			ft_printf("░██████╗░░██████╗░\n\
+██╔════╝░██╔════╝░\n\
+██║░░██╗░██║░░██╗░\n\
+██║░░╚██╗██║░░╚██╗\n\
+╚██████╔╝╚██████╔╝\n\
+░╚═════╝░░╚═════╝░\n");
 			close_game(game);
 		}
 		return (0);

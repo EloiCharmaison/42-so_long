@@ -32,7 +32,7 @@ void	load_images(t_game *game)
 	if (!game->img_wall || !game->img_floor || !game->img_player
 		|| !game->img_exit || !game->img_collect)
 	{
-		write(2, "Error, failed to load the texture\n", 34);
+		write(2, "Error\nFailed to load the texture\n", 34);
 		exit(1);
 	}
 }
@@ -42,7 +42,7 @@ void	mlx_init_game(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
-		write(2, "Error, MLX init failed\n", 22);
+		write(2, "Error\nMLX init failed\n", 22);
 		exit(1);
 	}
 	game->win = mlx_new_window(
@@ -50,7 +50,7 @@ void	mlx_init_game(t_game *game)
 	mlx_hook(game->win, 17, 0, close_game, game);
 	if (!game->win)
 	{
-		write(2, "Error, Window creation failed\n", 30);
+		write(2, "Error\nWindow creation failed\n", 30);
 		exit(1);
 	}
 }

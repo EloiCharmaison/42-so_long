@@ -37,11 +37,8 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2)
-	{
-		write(2, "Error, Wrong number of argument\n", 32);
+	if (!check_argument(argc, argv[1]))
 		return (1);
-	}
 	game.map = read_map(argv[1]);
 	if (!game.map)
 		return (1);
@@ -74,4 +71,25 @@ int	check_min_chars(char **map)
 	if (p != 1 || e != 1 || c < 1)
 		return (0);
 	return (1);
+}
+
+int	check_argument(int argc, char *filename)
+{
+	int	i;
+
+	if (argc != 2)
+	{
+		ft_printf("Error\nWrong number of argument\n");
+		return (0);
+	}
+	i = ft_strlen(filename);
+	if (i < 5 || filename[i - 5] == '/')
+	{
+		ft_printf("Error\nInvalid file name");
+		return (0);
+	}
+	if (ft_strncmp(&filename[i - 4], ".ber", 4) == 0)
+		return (1);
+	ft_printf("Error\nInvalid file extension\n");
+	return (0);
 }

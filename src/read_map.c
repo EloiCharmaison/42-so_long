@@ -21,7 +21,10 @@ int	count_line(char *filename)
 	count = 0;
 	fd = open (filename, O_RDONLY);
 	if (fd < 0)
+	{
+		ft_printf("Error\nNo such file in directory");
 		return (-1);
+	}
 	while (read(fd, &c, 1) > 0)
 	{
 		if (c == '\n')

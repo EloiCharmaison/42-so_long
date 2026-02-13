@@ -1,80 +1,56 @@
+# This project has been created as part of the 42 curriculum by echarmai
+
 # so_long
 
-## 🕹️ Description
+## Description
 
-**so_long** est un petit jeu 2D développé en C dans le cadre du cursus de l’école 42.  
-Le but du projet est de créer un jeu simple en utilisant la **MiniLibX**, tout en respectant des règles strictes de parsing de map, de gestion des événements et de rendu graphique.
+**so_long** is a small 2D game project developed in C using the **MiniLibX** graphical library.  
+The goal of the project is to create a simple top-down game where the player must collect all collectibles on the map and then reach the exit to win.
 
-Le joueur doit collecter tous les objets présents sur la carte avant de rejoindre la sortie.
-
----
-
-## 🎯 Objectifs du jeu
-
-- Se déplacer sur une carte 2D
-- Collecter tous les collectibles (`C`)
-- Rejoindre la sortie (`E`) **uniquement après** avoir tout collecté
-- Éviter de traverser les murs (`1`)
-- Compter et afficher le nombre de mouvements
+The game is based on a map file describing walls, empty spaces, collectibles, the player’s starting position, and the exit.  
+The project focuses on graphical rendering, event handling, memory management, and strict map validation.
 
 ---
 
-## 🗺️ La map
+## Instructions
 
-La map est fournie via un fichier `.ber` et doit respecter les règles suivantes :
+# Requirements
+- GNU/Linux or WSL
+- `gcc`
+- `make`
+- MiniLibX (provided by 42)
 
-- La map doit être **rectangulaire**
-- Elle doit être **entourée de murs**
-- Elle doit contenir au minimum :
-  - **1 joueur** (`P`)
-  - **1 sortie** (`E`)
-  - **1 collectible** (`C`)
-- Les caractères autorisés sont uniquement :
-  - `0` : sol vide
-  - `1` : mur
-  - `C` : collectible
-  - `E` : sortie
-  - `P` : joueur
-- Une **ligne vide finale est autorisée**
+# Compilation
 
-### Exemple de map valide :
-111111
-1P0C01
-100001
-1C0E01
-111111
+Clone the repository and compile the project using:
 
-## ⌨️ Contrôles
-
-| Touche | Action        |
-|------|---------------|
-| W / ↑ | Monter        |
-| S / ↓ | Descendre     |
-| A / ← | Aller à gauche|
-| D / → | Aller à droite|
-| ESC   | Quitter le jeu|
-
----
-
-## 🧠 Gestion des événements
-
-- Le joueur ne peut pas traverser les murs
-- La sortie est bloquée tant que tous les collectibles ne sont pas récupérés
-- Chaque déplacement valide incrémente le compteur de mouvements
-- La fermeture de la fenêtre quitte proprement le programme
-
----
-
-## 🛠️ Compilation
-
-### Prérequis
-- Linux ou WSL
-- MiniLibX
-- X11 libraries
-
-### Compilation
 ```bash
 make
 
-### Execution
-./so_long maps/map.ber
+# Execution
+
+./so_long maps/example.ber
+
+# Controls
+
+W A S D key's to move the player 
+ESC key's to close the window
+
+# Map Rules
+
+Be rectangular
+Be surrounded by walls
+Contain 1 player
+Contain 1 exit
+Contain at least 1 collectible
+Contain only valid characters (1, 0, P, E, C)
+be solvable
+
+# Library description
+
+usage of minilibX, a lightweight graphical library provided by 42
+used to :
+Create and manage window
+Load and display images (XPM)
+Handle keyboard and window events
+Render game elements in real time

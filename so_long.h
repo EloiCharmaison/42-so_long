@@ -74,5 +74,6 @@ char	**copy_map(char **map);
 int		check_flood(char **map);
 void	find_player(char **map, int *x, int *y);
 void	flood_fill(char **map, int x, int y);
+int		check_argument(int argc, char *filename);
 
 #endif
