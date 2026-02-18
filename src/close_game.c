@@ -24,3 +24,18 @@ int	close_game(t_game *game)
 	exit(0);
 	return (0);
 }
+
+void	free_grid(char **grid)
+{
+	int	i;
+
+	if (!grid)
+		return ;
+	i = 0;
+	while (grid[i])
+	{
+		free(grid[i]);
+		i++;
+	}
+	free(grid);
+}

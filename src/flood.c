@@ -15,9 +15,14 @@
 int	flood(char **map)
 {
 	char	**map_copy;
+	int		is_solvable;
 
 	map_copy = copy_map(map);
-	if (!check_flood(map_copy))
+	if (!map_copy)
+		return (1);
+	is_solvable = check_flood(map_copy);
+	free_grid(map_copy);
+	if (!is_solvable)
 	{
 		ft_printf("Error\nThe map is not solvable\n");
 		return (1);

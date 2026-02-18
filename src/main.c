@@ -38,14 +38,14 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (!check_argument(argc, argv[1]))
-		return (1);
+		return (free_grid(game.map), 1);
 	game.map = read_map(argv[1]);
 	if (!game.map)
-		return (1);
+		return (free_grid(game.map), 1);
 	if (map_checker(game.map))
-		return (1);
+		return (free_grid(game.map), 1);
 	if (flood(game.map))
-		return (1);
+		return (free_grid(game.map), 1);
 	game.height = get_map_height(game.map);
 	game.width = get_map_width(game.map);
 	game.moves = 0;
@@ -55,7 +55,8 @@ int	main(int argc, char **argv)
 	mlx_key_hook(game.win, handle_key, &game);
 	render_map(&game);
 	mlx_loop(game.mlx);
-	return (0);
+	destroy_images(&game);
+	return (free_grid(game.map), 0);
 }
 
 int	check_min_chars(char **map)

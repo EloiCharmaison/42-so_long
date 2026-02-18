@@ -54,3 +54,12 @@ void	mlx_init_game(t_game *game)
 		exit(1);
 	}
 }
+
+void	destroy_images(t_game *game)
+{
+	mlx_destroy_image(game->mlx, game->img_collect);
+	mlx_destroy_image(game->mlx, game->img_exit);
+	mlx_destroy_image(game->mlx, game->img_floor);
+	mlx_destroy_image(game->mlx, game->img_player);
+	mlx_destroy_image(game->mlx, game->img_wall);
+}

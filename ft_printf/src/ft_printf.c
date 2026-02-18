@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eloi <eloi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: echarmai <echarmai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:14:12 by echarmai          #+#    #+#             */
-/*   Updated: 2025/11/21 21:13:36 by eloi             ###   ########.fr       */
+/*   Updated: 2026/02/18 15:04:09 by echarmai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	print_arg(char c, va_list args);
 
-int	ft_printf(const char *str, ...) 
+int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	int		i;

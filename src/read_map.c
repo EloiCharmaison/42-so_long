@@ -71,7 +71,7 @@ char	**read_map(char *filename)
 		return (NULL);
 	map = malloc(sizeof(char *) * (lines + 1));
 	if (!map)
-		return (NULL);
+		return (free_grid(map), NULL);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
@@ -83,6 +83,7 @@ char	**read_map(char *filename)
 			break ;
 		i++;
 	}
+	
 	map[i] = NULL;
 	return (map);
 }
