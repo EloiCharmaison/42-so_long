@@ -22,6 +22,8 @@ OBJS = $(SRCS:.c=.o)
 
 MLX_DIR = minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx.a
+GNL_DIR = get_next_line
+GNL = $(GNL_DIR)/get_next_line.a
 PRINTF_DIR = ft_printf
 PRINTF = $(PRINTF_DIR)/ft_printf.a
 LIBFT_DIR = $(PRINTF_DIR)/libft
@@ -35,16 +37,21 @@ $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
 	make -C $(PRINTF_DIR)
 	make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
+	make -C $(GNL_DIR)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(GNL) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
 	make -C $(LIBFT_DIR) clean
 	make -C $(PRINTF_DIR) clean
+	make -C $(GNL_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_DIR) fclean
 	make -C $(PRINTF_DIR) fclean
+	make -C $(GNL_DIR) fclean
 
 re: fclean all
+
+.PHONY: all clean fclean re

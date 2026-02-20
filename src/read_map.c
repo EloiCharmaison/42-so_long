@@ -16,7 +16,7 @@ int	count_line(char *filename)
 {
 	int		fd;
 	int		count;
-	char	c;
+	char	*line;
 
 	count = 0;
 	fd = open (filename, O_RDONLY);
@@ -25,38 +25,15 @@ int	count_line(char *filename)
 		ft_printf("Error\nNo such file in directory");
 		return (-1);
 	}
-	while (read(fd, &c, 1) > 0)
+	line = get_next_line(fd);
+	while (line)
 	{
-		if (c == '\n')
-			count++;
+		count++;
+		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
-	return (count + 1);
-}
-
-char	*read_line(int fd)
-{
-	char	*line;
-	char	c;
-	int		i;
-
-	line = malloc(10000);
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (read(fd, &c, 1) > 0)
-	{
-		if (c == '\n')
-			break ;
-		line[i++] = c;
-	}
-	if (i == 0 && c != '\n')
-	{
-		free(line);
-		return (NULL);
-	}
-	line[i] = '\0';
-	return (line);
+	return (count);
 }
 
 char	**read_map(char *filename)
@@ -67,7 +44,7 @@ char	**read_map(char *filename)
 	int		i;
 
 	lines = count_line(filename);
-	if (lines == -1)
+	if (lines <= 0)
 		return (NULL);
 	map = malloc(sizeof(char *) * (lines + 1));
 	if (!map)
@@ -76,15 +53,13 @@ char	**read_map(char *filename)
 	if (fd < 0)
 		return (NULL);
 	i = 0;
+	map[i] = get_next_line(fd);
 	while (i < lines)
 	{
-		map[i] = read_line(fd);
-		if (!map[i])
-			break ;
 		i++;
+		map[i] = get_next_line(fd);
 	}
-	
-	map[i] = NULL;
+	close(fd);
 	return (map);
 }
 

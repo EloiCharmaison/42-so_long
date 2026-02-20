@@ -14,6 +14,9 @@
 
 int	close_game(t_game *game)
 {
+	destroy_images(game);
+	if (game->map)
+		free_grid(game->map);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)

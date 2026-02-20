@@ -16,19 +16,22 @@ int	map_checker(char **map)
 {
 	if (!check_rectangle(map))
 	{
-		ft_printf("Error\n the map is not rectangular\n");
+		ft_printf("Error\nThe map is not rectangular\n");
+		free_grid(map);
 		return (1);
 	}
 	if (!check_walls(map))
 	{
-		ft_printf("Error\n the map is not closed by walls\n");
+		ft_printf("Error\nThe map is not closed by walls\n");
+		free_grid(map);
 		return (1);
 	}
 	if (check_chars(map) == 0)
 	{
-		ft_printf("Error\n wrong characters found in map or ");
+		ft_printf("Error\nWrong characters found in map or ");
 		ft_printf("needed 1 exit, 1 starting position ");
 		ft_printf("and at least 1 collectible\n");
+		free_grid(map);
 		return (1);
 	}
 	return (0);
@@ -39,6 +42,8 @@ int	line_len(char *line)
 	int	i;
 
 	i = 0;
+	if (!line)
+		return (0);
 	while (line[i] && line[i] != '\n' && line[i] != '\r')
 		i++;
 	return (i);
@@ -47,17 +52,23 @@ int	line_len(char *line)
 int	check_rectangle(char **map)
 {
 	int	i;
-	int	len;
+	int	base_len;
+	int	current_len;
 
 	if (!map || !map[0])
 		return (0);
-	len = line_len(map[0]);
-	i = 1;
+	base_len = line_len(map[0]);
+	i = 0;
 	while (map[i])
 	{
-		if (line_len(map[i]) == 0 && !map[i + 1])
-			return (1);
-		if (line_len(map[i]) != len)
+		current_len = line_len(map[i]);
+		if (current_len == 0)
+		{
+			if (map[i + 1] == NULL)
+				break;
+			return (0);
+		}
+		if (current_len != base_len)
 			return (0);
 		i++;
 	}

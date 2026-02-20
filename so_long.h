@@ -19,6 +19,7 @@
 # define KEY_D 100
 # define KEY_ESC 65307
 
+# include "get_next_line/get_next_line.h"
 # include "minilibx-linux/mlx.h"
 # include "ft_printf/libft/libft.h"
 # include "ft_printf/ft_printf.h"
@@ -51,7 +52,6 @@ int		check_rectangle(char **map);
 int		check_walls(char **map);
 char	**read_map(char *filename);
 int		count_line(char *filename);
-char	*read_line(int fd);
 void	load_images(t_game *game);
 void	mlx_init_game(t_game *game);
 int		get_map_width(char **map);

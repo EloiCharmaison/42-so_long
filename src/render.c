@@ -21,7 +21,7 @@ void	render_map(t_game *game)
 	while (game->map[y])
 	{
 		x = 0;
-		while (game->map[y][x])
+		while (game->map[y][x] && game->map[y][x] != '\n')
 		{
 			map_parse(game, x, y);
 			x++;
