@@ -74,7 +74,7 @@ char	**copy_map(char **map);
 int		check_flood(char **map);
 void	find_player(char **map, int *x, int *y);
 void	flood_fill(char **map, int x, int y);
-int		check_argument(int argc, char *filename);
+int		map_name_checker(int argc, char *filename);
 void	free_grid(char **grid);
 void	destroy_images(t_game *game);
 

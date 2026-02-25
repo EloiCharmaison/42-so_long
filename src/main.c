@@ -29,18 +29,15 @@ int	get_map_width(char **map)
 	i = 0;
 	while (map[0][i] && map[0][i] != '\n')
 		i++;
-	return (i - 1);
+	return (i);
 }
 
 int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2)
-	{
-		write(1, "Error, Wrong number of argument\n", 32);
+	if (!map_name_checker(argc, argv[1]))
 		return (0);
-	}
 	game.map = read_map(argv[1]);
 	if (!game.map)
 		return (0);
@@ -74,3 +71,35 @@ int	check_min_chars(char **map)
 		return (0);
 	return (1);
 }
+
+int	map_name_checker(int argc, char *filename)
+{
+	int	len;
+
+	if (argc != 2)
+	{
+		ft_printf("Error\nWrong number of argument\n");
+		return (0);
+	}
+	len = ft_strlen(filename);
+	while (len > 0 && filename[len - 1] != '/')
+		len--;
+	if (filename[len] == '.')
+	{
+		ft_printf("Error\nInvisible file\n");
+		return (0);
+	}
+	len = ft_strlen(filename);
+	if (len <= 4)
+		return (0);
+	if (ft_strncmp(filename + len - 4, ".ber", 4) != 0)
+	{
+		ft_printf("Error\nWrong argument\n");
+		return (0);
+	}
+	return (1);
+}
+
+
+	if (read(fd, &c, 1) == 0)
+		return (ft_printf("Error\nEmpty file\n"), 0);

@@ -75,6 +75,8 @@ int	check_move(t_game *game, char next)
 ░╚═════╝░░╚═════╝░\n");
 			close_game(game);
 		}
+		else
+			return (0);
 	}
 	return (1);
 }

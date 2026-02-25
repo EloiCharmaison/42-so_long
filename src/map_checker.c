@@ -12,8 +12,22 @@
 
 #include "../so_long.h"
 
+static int	line_len(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (!line)
+		return (0);
+	while (line[i] && line[i] != '\n' && line[i] != '\r')
+		i++;
+	return (i);
+}
+
 int	map_checker(char **map)
 {
+	if (read(fd, &c, 1) == 0)
+		return (ft_printf("Error\nEmpty file\n"), 0);
 	if (!check_rectangle(map))
 	{
 		ft_printf("Error\nThe map is not rectangular\n");
@@ -37,18 +51,6 @@ int	map_checker(char **map)
 	return (0);
 }
 
-int	line_len(char *line)
-{
-	int	i;
-
-	i = 0;
-	if (!line)
-		return (0);
-	while (line[i] && line[i] != '\n' && line[i] != '\r')
-		i++;
-	return (i);
-}
-
 int	check_rectangle(char **map)
 {
 	int	i;
@@ -63,11 +65,7 @@ int	check_rectangle(char **map)
 	{
 		current_len = line_len(map[i]);
 		if (current_len == 0)
-		{
-			if (map[i + 1] == NULL)
-				break;
 			return (0);
-		}
 		if (current_len != base_len)
 			return (0);
 		i++;
