@@ -26,8 +26,6 @@ static int	line_len(char *line)
 
 int	map_checker(char **map)
 {
-	if (read(fd, &c, 1) == 0)
-		return (ft_printf("Error\nEmpty file\n"), 0);
 	if (!check_rectangle(map))
 	{
 		ft_printf("Error\nThe map is not rectangular\n");

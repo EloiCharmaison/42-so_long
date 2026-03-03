@@ -27,7 +27,7 @@ int	get_map_width(char **map)
 	int	i;
 
 	i = 0;
-	while (map[0][i] && map[0][i] != '\n')
+	while (map[0][i] && map[0][i] != '\n' && map[0][i] != '\r')
 		i++;
 	return (i);
 }
@@ -40,7 +40,10 @@ int	main(int argc, char **argv)
 		return (0);
 	game.map = read_map(argv[1]);
 	if (!game.map)
+	{
+		ft_printf("Error\nInvalid map\n");
 		return (0);
+	}
 	if (map_checker(game.map))
 		return (0);
 	if (flood(game.map))
@@ -99,7 +102,3 @@ int	map_name_checker(int argc, char *filename)
 	}
 	return (1);
 }
-
-
-	if (read(fd, &c, 1) == 0)
-		return (ft_printf("Error\nEmpty file\n"), 0);
